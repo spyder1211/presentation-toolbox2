@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自治体職員向け生成AIワークショップ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Atlassian Design Colors */
+            --primary-color: #0052CC;
+            --secondary-color: #36B37E;
+            --accent-color: #FF5630;
+            --text-color: #172B4D;
+            --text-secondary: #6B778C;
+            --light-bg: #F4F5F7;
+            --white: #FFFFFF;
+            --gray: #97A0AF;
+            --success: #36B37E;
+            --warning: #FFAB00;
+            --error: #DE350B;
+            --neutral: #DFE1E6;
+            --brand: #0052CC;
+            --elevation-shadow: 0 2px 6px rgba(3, 102, 214, 0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.5;
+            color: var(--text-color);
+            background: var(--light-bg);
+            overflow: hidden;
+            height: 100vh;
+            font-weight: 400;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            background: var(--white);
+            padding: 60px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            animation: slideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* タイトルスライド */
+        .title-slide {
+            text-align: center;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            background: #ffffff;
+            color: var(--text-color);
+        }
+
+        .title-slide h1 {
+            font-size: 3.2em;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--primary-color);
+            line-height: 1.3;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.6em;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .title-slide .divider {
+            width: 120px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 40px auto;
+            border-radius: 2px;
+        }
+
+        .title-slide .date {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+        /* 通常スライド */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 32px;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 16px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin: 24px 0 16px 0;
+            color: var(--text-color);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 20px 0 12px 0;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.25rem;
+            margin: 16px 0 8px 0;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        h5 {
+            font-size: 1.1rem;
+            margin: 12px 0 8px 0;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* テキスト */
+        p {
+            font-size: 1.1rem;
+            margin: 16px 0;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        ul, ol {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        li {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        /* コードブロック */
+        .code-container {
+            position: relative;
+            margin: 24px 0;
+        }
+
+        pre {
+            background: #F4F5F7;
+            border: 1px solid var(--neutral);
+            border-radius: 6px;
+            padding: 24px;
+            margin: 0;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            box-shadow: var(--elevation-shadow);
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--white);
+            border: 1px solid var(--neutral);
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s ease-in-out;
+            box-shadow: var(--elevation-shadow);
+        }
+
+        .copy-button:hover {
+            background: var(--light-bg);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .copy-button.copied {
+            background: var(--success);
+            border-color: var(--success);
+            color: var(--white);
+        }
+
+        code {
+            font-family: 'SFMono-Regular', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+            color: var(--text-color);
+            background: #F4F5F7;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.95rem;
+        }
+
+        /* 強調 */
+        .highlight {
+            background: rgba(0, 82, 204, 0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .highlight-box {
+            background: var(--light-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* カード */
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+            box-shadow: var(--elevation-shadow);
+            border: 1px solid var(--neutral);
+            transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(3, 102, 214, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .card.success {
+            border-left: 4px solid var(--success);
+            background: linear-gradient(90deg, rgba(54, 179, 126, 0.05), var(--white));
+        }
+
+        .card.warning {
+            border-left: 4px solid var(--warning);
+            background: linear-gradient(90deg, rgba(255, 171, 0, 0.05), var(--white));
+        }
+
+        .card.error {
+            border-left: 4px solid var(--error);
+            background: linear-gradient(90deg, rgba(222, 53, 11, 0.05), var(--white));
+        }
+
+        /* 比較レイアウト */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .comparison-item {
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .before {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: var(--white);
+        }
+
+        .after {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: var(--primary-color);
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .feature-item {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+            transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+            border: 1px solid var(--neutral);
+            box-shadow: var(--elevation-shadow);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(3, 102, 214, 0.25);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 82, 204, 0.1);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+
+        /* 画像 */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            border: 1px solid var(--neutral);
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .summary-box h2 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        /* URL Link */
+        .url-link {
+            font-size: 1.1em;
+            color: var(--primary-color);
+            text-decoration: underline;
+            margin: 20px 0;
+            display: block;
+            word-break: break-all;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        /* ナビゲーション */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 20px;
+            z-index: 1001;
+            background: var(--white);
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #0747A6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 82, 204, 0.3);
+        }
+
+        .nav-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .nav-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .slide-counter {
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* プログレスバー */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--neutral);
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            transition: width 0.3s ease-in-out;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* スライド番号 */
+        .slide-number {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: var(--white);
+            padding: 8px 16px;
+            border-radius: 6px;
+            box-shadow: var(--elevation-shadow);
+            font-weight: 500;
+            color: var(--text-secondary);
+            z-index: 1000;
+            font-size: 0.875rem;
+            border: 1px solid var(--neutral);
+        }
+
+        /* デモコンテンツ用スタイル */
+        .demo-content {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .time-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .time-box {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .time-box.old-method {
+            background: #ffebee;
+            border: 2px solid #ef5350;
+        }
+
+        .time-box.new-method {
+            background: #e8f5e9;
+            border: 2px solid #66bb6a;
+        }
+
+        .time-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .step-number {
+            display: inline-flex;
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 12px;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- プログレスバー -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressBar"></div>
+    </div>
+
+    <!-- スライド番号 -->
+    <div class="slide-number" id="slideNumber">1 / 20</div>
+
+    <!-- プレゼンテーションコンテナ -->
+    <div class="presentation-container">
+        
+        <!-- スライド1: タイトル -->
+        <div class="slide active title-slide">
+            <h1>自治体職員向け<br>生成AIワークショップ</h1>
+            <div class="divider"></div>
+            <p class="subtitle">4つのデモンストレーションで学ぶ実践的AI活用</p>
+            <div class="date">2025年9月2日</div>
+        </div>
+
+        <!-- スライド2: 概要 -->
+        <div class="slide">
+            <h1>本日のワークショップ概要</h1>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <h3>画像生成</h3>
+                    <p>ChatGPTで商品宣伝画像を作成</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔍</div>
+                    <h3>DeepResearch</h3>
+                    <p>他自治体のAI活用事例を調査</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📝</div>
+                    <h3>資料作成</h3>
+                    <p>ガイドライン骨子の自動生成</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
+                    <h3>RAGチャットボット</h3>
+                    <p>都留市専用AIアシスタント</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド3: デモ1タイトル -->
+        <div class="slide">
+            <h1>デモ1: 画像生成を使った商品宣伝</h1>
+            <h2>ChatGPT/DALL-E 3で化粧水の宣伝画像を作成</h2>
+            <div class="highlight-box">
+                <h3>このデモで学べること</h3>
+                <ul>
+                    <li>AI画像生成の基本的な使い方</li>
+                    <li>効果的なプロンプトの書き方</li>
+                    <li>画像内テキストの編集方法</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド4: キャッチコピー作成 -->
+        <div class="slide">
+            <h1>ステップ1: キャッチコピーの生成</h1>
+            <div class="demo-content">
+                <h3>ChatGPTへの指示</h3>
+                <p>「化粧水の特徴を伝える魅力的なキャッチコピーを5つ提案してください」</p>
+            </div>
+            <div class="image-container">
+                <img src="Google Chrome 2025-09-02 15.04.55.png" alt="キャッチコピー生成結果">
+            </div>
+        </div>
+
+        <!-- スライド5: 画像生成プロンプト -->
+        <div class="slide">
+            <h1>ステップ2: 化粧水画像の生成</h1>
+            <div class="code-container">
+                <pre><code>あなたはプロのイラストレーターです。 
+以下の条件に従い、女性用化粧水を宣伝するチラシに掲載する画像を作成してください。 
+
+###条件：
+・化粧水の商品の魅力が伝わるような画像 
+・明るい色がメイン 
+・縦：横＝2：1</code></pre>
+            </div>
+            <div class="image-container">
+                <img src="image.png" alt="生成された化粧水画像">
+            </div>
+        </div>
+
+        <!-- スライド6: テキスト変更 -->
+        <div class="slide">
+            <h1>ステップ3: 画像内テキストの変更</h1>
+            <div class="comparison">
+                <div class="comparison-item before">
+                    <h3>変更前</h3>
+                    <img src="image-2.png" alt="変更前の画像">
+                </div>
+                <div class="comparison-item after">
+                    <h3>変更後</h3>
+                    <img src="image-1.png" alt="変更後の画像">
+                </div>
+            </div>
+            <div class="code-container">
+                <pre><code>キャッチコピーを以下にしてください。 
+
+肌に、水のごちそうを。</code></pre>
+            </div>
+        </div>
+
+        <!-- スライド7: デモ2タイトル -->
+        <div class="slide">
+            <h1>デモ2: DeepResearchで情報検索</h1>
+            <h2>他自治体の生成AI活用事例を効率的に調査</h2>
+            <div class="time-comparison">
+                <div class="time-box old-method">
+                    <h3>従来の方法</h3>
+                    <div class="time-value">約5時間30分</div>
+                    <ul style="text-align: left; font-size: 0.9em;">
+                        <li>Google検索: 30分</li>
+                        <li>プレスリリース確認: 1時間</li>
+                        <li>報告書調査: 1時間</li>
+                        <li>Excel整理: 2時間</li>
+                        <li>レポート作成: 1時間</li>
+                    </ul>
+                </div>
+                <div class="time-box new-method">
+                    <h3>DeepResearch使用</h3>
+                    <div class="time-value">約40分</div>
+                    <ul style="text-align: left; font-size: 0.9em;">
+                        <li>プロンプト作成: 1分</li>
+                        <li>自動調査: 10分</li>
+                        <li>確認・微調整: 30分</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド8: 初期プロンプト -->
+        <div class="slide">
+            <h1>初期プロンプトから改善へ</h1>
+            <div class="card warning">
+                <h3>初期プロンプト</h3>
+                <pre><code>優秀なリサーチャーとして、Deepresearchを使って以下のレポートをまとめたいです。
+
+他の自治体の生成AI導入・活用事例
+
+このプロンプトをもっとよくしてください。</code></pre>
+            </div>
+            <p style="text-align: center; font-size: 1.5em; margin: 30px;">↓</p>
+            <div class="highlight-box">
+                <p>ChatGPTがより詳細で構造化されたプロンプトを提案</p>
+            </div>
+        </div>
+
+        <!-- スライド9: 改善プロンプト -->
+        <div class="slide">
+            <h1>改善されたプロンプト</h1>
+            <div class="code-container">
+                <pre><code>あなたは優秀なリサーチャーです。  
+以下のテーマについて、Deepresearchを用いて体系的に調査・分析を行い、レポートをまとめてください。
+
+### テーマ
+他の自治体における生成AI導入・活用事例
+
+### 調査・分析観点
+- 導入の背景・目的（課題認識、政策文脈）  
+- 活用分野（例：文書作成、窓口対応、議事録要約、教育、観光PRなど）  
+- 活用事例の具体例（どのような業務・サービスでAIが使われているか）  
+- 成果や効果（定量的指標・定性的効果の両方）  
+- 課題・リスク（予算、職員スキル、住民への影響、セキュリティ、ガイドラインなど）  
+- 今後の展望や発展可能性</code></pre>
+            </div>
+        </div>
+
+        <!-- スライド10: DeepResearch実行結果 -->
+        <div class="slide">
+            <h1>DeepResearch実行結果</h1>
+            <div class="feature-grid">
+                <div class="card success">
+                    <h3>実行時間</h3>
+                    <p style="font-size: 2em; font-weight: bold;">8分</p>
+                </div>
+                <div class="card primary">
+                    <h3>情報源</h3>
+                    <p style="font-size: 2em; font-weight: bold;">15件</p>
+                </div>
+                <div class="card warning">
+                    <h3>検索回数</h3>
+                    <p style="font-size: 2em; font-weight: bold;">33件</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="image-5.png" alt="DeepResearch出力結果">
+            </div>
+            <a href="https://chatgpt.com/s/dr_68b69c6be5ec8191a9712e747e9f63b9" target="_blank" class="url-link">
+                共有リンク: https://chatgpt.com/s/dr_68b69c6be5ec8191a9712e747e9f63b9
+            </a>
+        </div>
+
+        <!-- スライド11: デモ3タイトル -->
+        <div class="slide">
+            <h1>デモ3: 生成AIで資料作成</h1>
+            <h2>都留市向けAI活用ガイドライン骨子の作成</h2>
+            <div class="highlight-box">
+                <h3>参考資料</h3>
+                <p>デジタル庁「行政の進化と革新のための生成AIの調達・利活用に係るガイドライン」</p>
+                <a href="https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/80419aea/20250527_resources_standard_guidelines_guideline_01.pdf" target="_blank" class="url-link">
+                    ガイドラインPDF
+                </a>
+            </div>
+        </div>
+
+        <!-- スライド12: ガイドライン作成プロンプト -->
+        <div class="slide">
+            <h1>ガイドライン骨子作成プロンプト</h1>
+            <div class="code-container">
+                <pre><code>あなたは**山梨県都留市の地方自治体職員**です。  
+役割は、添付されたガイドラインを正確に理解し、都留市の実情に即した「生成AI活用ガイドラインの骨子」を作成することです。  
+
+### 指示内容
+1. 添付されたガイドラインの要点を抽出し、都留市に適用可能な部分と修正が必要な部分を整理してください。  
+2. 都留市の課題や政策文脈（人口減少、少子高齢化、行政効率化、観光振興など）を踏まえ、骨子案を再構築してください。  
+3. 骨子は以下の要素を含めてください：  
+   - **基本理念・目的**  
+   - **適用範囲（対象となる業務分野や職員）**  
+   - **活用分野（例：文書作成、窓口対応、議事録要約、教育、観光PRなど）**  
+   - **利用ルール・留意事項（個人情報保護、セキュリティ、誤用リスク）**  
+   - **導入体制・運用プロセス（承認フロー、試行導入、評価方法）**  
+   - **職員研修・市民への説明責任**  
+   - **今後の発展可能性（市の特色を活かした利活用の方向性）**</code></pre>
+            </div>
+        </div>
+
+        <!-- スライド13: Canvasの活用 -->
+        <div class="slide">
+            <h1>Canvasを使った文書編集</h1>
+            <h2>インタラクティブな文書作成・編集機能</h2>
+            <div class="demo-content">
+                <h3>デモ例: 恋愛小説の作成と編集</h3>
+                <pre><code>男女の恋愛小説を100文字程度で書いてください。</code></pre>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">✏️</div>
+                    <h3>修正提案</h3>
+                    <p>AIが文章の改善点を提案</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📏</div>
+                    <h3>文章の長さ調節</h3>
+                    <p>要約や詳細化が簡単</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📖</div>
+                    <h3>読解レベル調整</h3>
+                    <p>対象者に合わせた文体変更</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド14: デモ4タイトル -->
+        <div class="slide">
+            <h1>デモ4: RAGチャットボット</h1>
+            <h2>都留市専用知識ベースを活用したAIアシスタント</h2>
+            <div class="comparison">
+                <div class="comparison-item before">
+                    <h3>従来のAIの課題</h3>
+                    <ul>
+                        <li>学習データの時点で知識が固定</li>
+                        <li>最新情報に対応できない</li>
+                        <li>組織固有の情報を知らない</li>
+                        <li>誤った情報を生成する可能性</li>
+                    </ul>
+                </div>
+                <div class="comparison-item after">
+                    <h3>RAGによる解決</h3>
+                    <ul>
+                        <li>最新の市政情報を参照</li>
+                        <li>都留市固有のデータを活用</li>
+                        <li>根拠を明示した回答</li>
+                        <li>24時間365日対応可能</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド15: RAGの仕組み -->
+        <div class="slide">
+            <h1>RAGの仕組み</h1>
+            <div class="image-container">
+                <img src="image-6.png" alt="RAG概念図1">
+                <p style="font-size: 2em; margin: 20px;">↓</p>
+                <img src="image-7.png" alt="RAG概念図2">
+            </div>
+            <div class="code-container">
+                <pre><code>【RAGの仕組み】
+1. 質問を受ける
+2. 関連文書を検索（ベクトル検索）
+3. 検索結果を参照しながら回答生成
+→ 最新かつ正確な情報に基づく回答が可能</code></pre>
+            </div>
+        </div>
+
+        <!-- スライド16: チャットボットデモ -->
+        <div class="slide">
+            <h1>都留市チャットボット実演</h1>
+            <div class="highlight-box">
+                <h3>デモURL</h3>
+                <a href="https://lately-large-garfish.ngrok-free.app/chat/94OethPUJ5Pgu1rO" target="_blank" class="url-link">
+                    https://lately-large-garfish.ngrok-free.app/chat/94OethPUJ5Pgu1rO
+                </a>
+            </div>
+            <div class="demo-content">
+                <h3>質問例1: 図書館の開館時間</h3>
+                <pre><code>Q: 都留市の図書館の開館時間を教えてください
+
+A: 都留市立図書館の開館時間は、火曜〜金曜が10:00〜19:00、
+   土曜日祝が10:00〜17:00です。休館日は月曜日と年末年始となります。</code></pre>
+            </div>
+        </div>
+
+        <!-- スライド17: 児童手当の問い合わせ -->
+        <div class="slide">
+            <h1>複雑な問い合わせへの対応</h1>
+            <div class="demo-content">
+                <h3>質問例2: 児童手当について</h3>
+                <pre><code>Q: 子供手当について教えてください
+
+A: 児童手当について知りたいのですね。2024年10月改正後の主な内容は次のとおりです。
+
+- 支給額
+  - 0歳〜3歳未満: 月額 15,000円
+  - 3歳〜小学校修了前: 月額 10,000円
+    - 第3子以降は月額 30,000円
+  - 中学生: 月額 10,000円
+  - 高校生年代（15歳年度末〜18歳年度末）: 月額 10,000円
+    - 第3子以降は月額 30,000円
+
+- 支給時期
+  - 偶数月に支給（2月・4月・6月・8月・10月・12月）
+
+- 申請期限
+  - 令和7年3月31日まで（高校生年代の新規申請を含む）</code></pre>
+            </div>
+        </div>
+
+        <!-- スライド18: 導入効果 -->
+        <div class="slide">
+            <h1>RAG導入による効果</h1>
+            <div class="feature-grid">
+                <div class="card success">
+                    <h3>業務効率化</h3>
+                    <ul>
+                        <li>電話対応: 15分→1分（93%削減）</li>
+                        <li>年間5,000件で1,250時間削減</li>
+                        <li>職員2名分の業務時間創出</li>
+                    </ul>
+                </div>
+                <div class="card primary">
+                    <h3>市民サービス向上</h3>
+                    <ul>
+                        <li>24時間365日対応</li>
+                        <li>待ち時間ゼロ</li>
+                        <li>多言語対応も可能</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド19: 実施上の注意点 -->
+        <div class="slide">
+            <h1>実施上の注意点</h1>
+            <div class="card error">
+                <h3>⚠️ 共通事項</h3>
+                <ul>
+                    <li>個人情報・機密情報の取り扱いに関する注意喚起</li>
+                    <li>生成AIの限界と人間による確認の重要性</li>
+                    <li>著作権・倫理的配慮</li>
+                    <li>コスト面での考慮事項</li>
+                </ul>
+            </div>
+            <div class="card warning">
+                <h3>📋 技術要件</h3>
+                <ul>
+                    <li>インターネット接続環境</li>
+                    <li>プロジェクター/大型モニター</li>
+                    <li>デモ用のダミーデータ準備</li>
+                    <li>バックアップ資料（オフライン対応）</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド20: まとめ -->
+        <div class="slide">
+            <h1>本日のまとめ</h1>
+            <div class="summary-box">
+                <h2>生成AIで実現できる業務改革</h2>
+                <p>4つのデモンストレーションを通じて、生成AIの実践的な活用方法を体験いただきました</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>🎨 画像生成</h3>
+                    <p>広報資料の質向上</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🔍 DeepResearch</h3>
+                    <p>調査時間の大幅削減</p>
+                </div>
+                <div class="feature-item">
+                    <h3>📝 資料作成</h3>
+                    <p>文書作成の効率化</p>
+                </div>
+                <div class="feature-item">
+                    <h3>💬 RAG</h3>
+                    <p>市民サービスの向上</p>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <h3>フォローアップ</h3>
+                <ul>
+                    <li>デモで使用したプロンプト例の配布</li>
+                    <li>参考資料・リンク集の提供</li>
+                    <li>個別相談会の案内</li>
+                    <li>試験導入プログラムの紹介</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ナビゲーションコントロール -->
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">
+            <i class="fas fa-chevron-left"></i>
+            前へ
+        </button>
+        <div class="slide-counter" id="slideCounter">1 / 20</div>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">
+            次へ
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            // 範囲チェック
+            if (n >= totalSlides) currentSlide = 0;
+            if (n < 0) currentSlide = totalSlides - 1;
+
+            // すべてのスライドを非表示
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // 現在のスライドを表示
+            slides[currentSlide].classList.add('active');
+
+            // プログレスバー更新
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            // スライド番号更新
+            document.getElementById('slideNumber').textContent = 
+                `${currentSlide + 1} / ${totalSlides}`;
+            
+            // ナビゲーションのスライドカウンター更新
+            const slideCounter = document.getElementById('slideCounter');
+            if (slideCounter) {
+                slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+            }
+
+            // ボタンの有効/無効切り替え
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+
+        // キーボードナビゲーション
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                if (currentSlide < totalSlides - 1) changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (currentSlide > 0) changeSlide(-1);
+            } else if (e.key === 'Home') {
+                currentSlide = 0;
+                showSlide(currentSlide);
+            } else if (e.key === 'End') {
+                currentSlide = totalSlides - 1;
+                showSlide(currentSlide);
+            }
+        });
+
+        // タッチ/スワイプサポート
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // 左スワイプ（次へ）
+                if (currentSlide < totalSlides - 1) changeSlide(1);
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                // 右スワイプ（前へ）
+                if (currentSlide > 0) changeSlide(-1);
+            }
+        }
+
+        // 初期化
+        showSlide(0);
+
+        // コードブロックにコピーボタンを追加
+        function addCopyButtons() {
+            const preElements = document.querySelectorAll('pre');
+            
+            preElements.forEach((pre, index) => {
+                // すでにコンテナで囲まれていない場合のみ処理
+                if (!pre.parentNode.classList.contains('code-container')) {
+                    // preをcode-containerで囲む
+                    const container = document.createElement('div');
+                    container.className = 'code-container';
+                    pre.parentNode.insertBefore(container, pre);
+                    container.appendChild(pre);
+                    
+                    // コピーボタンを作成
+                    const copyButton = document.createElement('button');
+                    copyButton.className = 'copy-button';
+                    copyButton.innerHTML = '<i class="fas fa-copy"></i> コピー';
+                    copyButton.setAttribute('data-code-index', index);
+                    
+                    // ボタンをコンテナに追加
+                    container.appendChild(copyButton);
+                }
+            });
+        }
+
+        // クリップボードにコピーする機能
+        async function copyToClipboard(text, button) {
+            try {
+                await navigator.clipboard.writeText(text);
+                
+                // ボタンの表示を一時的に変更
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> コピー済み';
+                button.classList.add('copied');
+                
+                // 2秒後に元に戻す
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('copied');
+                }, 2000);
+                
+            } catch (err) {
+                console.error('クリップボードへのコピーに失敗しました:', err);
+                
+                // フォールバック: 古いブラウザ用
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    button.innerHTML = '<i class="fas fa-check"></i> コピー済み';
+                    button.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="fas fa-copy"></i> コピー';
+                        button.classList.remove('copied');
+                    }, 2000);
+                } catch (err2) {
+                    console.error('フォールバックコピーも失敗しました:', err2);
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        // コピーボタンのクリックイベント
+        function setupCopyButtons() {
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.copy-button')) {
+                    e.preventDefault();
+                    const button = e.target.closest('.copy-button');
+                    const container = button.parentNode;
+                    const pre = container.querySelector('pre');
+                    const codeText = pre.textContent || pre.innerText;
+                    
+                    copyToClipboard(codeText, button);
+                }
+            });
+        }
+
+        // コピーボタンの初期化
+        addCopyButtons();
+        setupCopyButtons();
+    </script>
+</body>
+</html>
