@@ -645,27 +645,70 @@
         <!-- スライド7: デモ2タイトル -->
         <div class="slide">
             <h1>デモ2: DeepResearchで情報検索</h1>
-            <h2>他自治体の生成AI活用事例を効率的に調査</h2>
-            <div class="time-comparison">
-                <div class="time-box old-method">
-                    <h3>従来の方法</h3>
-                    <div class="time-value">約5時間30分</div>
-                    <ul style="text-align: left; font-size: 0.9em;">
-                        <li>Google検索: 30分</li>
-                        <li>プレスリリース確認: 1時間</li>
-                        <li>報告書調査: 1時間</li>
-                        <li>Excel整理: 2時間</li>
-                        <li>レポート作成: 1時間</li>
-                    </ul>
+            <div class="summary-box">
+                <h2>🎯 目的</h2>
+                <p style="font-size: 1.5em; font-weight: bold;">他の自治体の生成AI活用事例を調査してレポートにまとめる</p>
+            </div>
+            <div class="highlight-box">
+                <h3>このデモで学べること</h3>
+                <ul>
+                    <li>高度な情報収集・分析作業の効率化</li>
+                    <li>複数情報源からの自動情報収集</li>
+                    <li>構造化されたレポートの自動生成</li>
+                    <li>調査時間の劇的な短縮効果</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド8: 従来の調査方法 -->
+        <div class="slide">
+            <h1>従来の調査方法の課題</h1>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin: 30px 0;">
+                <div class="card error" style="padding: 30px;">
+                    <h2 style="text-align: center; color: #DE350B; margin-bottom: 30px;">
+                        <i class="fas fa-clock"></i> 合計約5時間30分の作業時間
+                    </h2>
+                    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px;">
+                        <div style="text-align: center; padding: 15px; background: #ffebee; border-radius: 8px;">
+                            <div style="font-size: 2em; margin-bottom: 10px;">🔍</div>
+                            <div style="font-weight: bold;">Google検索</div>
+                            <div style="font-size: 1.2em; color: #ef5350;">30分</div>
+                            <div style="font-size: 0.8em; margin-top: 5px;">「自治体 生成AI 活用事例」で検索</div>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: #ffebee; border-radius: 8px;">
+                            <div style="font-size: 2em; margin-bottom: 10px;">📄</div>
+                            <div style="font-weight: bold;">プレスリリース確認</div>
+                            <div style="font-size: 1.2em; color: #ef5350;">1時間</div>
+                            <div style="font-size: 0.8em; margin-top: 5px;">各自治体のサイトを個別訪問</div>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: #ffebee; border-radius: 8px;">
+                            <div style="font-size: 2em; margin-bottom: 10px;">📊</div>
+                            <div style="font-weight: bold;">報告書調査</div>
+                            <div style="font-size: 1.2em; color: #ef5350;">1時間</div>
+                            <div style="font-size: 0.8em; margin-top: 5px;">総務省・デジタル庁の資料</div>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: #ffebee; border-radius: 8px;">
+                            <div style="font-size: 2em; margin-bottom: 10px;">📝</div>
+                            <div style="font-weight: bold;">Excel整理</div>
+                            <div style="font-size: 1.2em; color: #ef5350;">2時間</div>
+                            <div style="font-size: 0.8em; margin-top: 5px;">情報を手動で転記・分類</div>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: #ffebee; border-radius: 8px;">
+                            <div style="font-size: 2em; margin-bottom: 10px;">📋</div>
+                            <div style="font-weight: bold;">レポート作成</div>
+                            <div style="font-size: 1.2em; color: #ef5350;">1時間</div>
+                            <div style="font-size: 0.8em; margin-top: 5px;">Wordで文書作成</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="time-box new-method">
-                    <h3>DeepResearch使用</h3>
-                    <div class="time-value">約40分</div>
-                    <ul style="text-align: left; font-size: 0.9em;">
-                        <li>プロンプト作成: 1分</li>
-                        <li>自動調査: 10分</li>
-                        <li>確認・微調整: 30分</li>
-                    </ul>
+            </div>
+            <div style="text-align: center; font-size: 1.5em; margin: 30px;">↓</div>
+            <div class="card success" style="padding: 30px; text-align: center;">
+                <h2 style="color: #36B37E; margin-bottom: 20px;">
+                    <i class="fas fa-rocket"></i> DeepResearch使用で約40分に短縮！
+                </h2>
+                <div style="font-size: 1.2em; color: #36B37E; font-weight: bold;">
+                    約87%の時間削減を実現
                 </div>
             </div>
         </div>
@@ -745,9 +788,25 @@
             </div>
         </div>
 
-        <!-- スライド12: ガイドライン作成プロンプト -->
+        <!-- スライド12: 初期プロンプト -->
         <div class="slide">
-            <h1>ガイドライン骨子作成プロンプト</h1>
+            <h1>初期プロンプト</h1>
+            <div class="card warning">
+                <h3>最初のシンプルな指示</h3>
+                <pre><code>あなたは山梨県都留市の地方自治体職員です。
+添付したガイドラインの内容を理解し、都留市におけるガイドラインの骨子を作成する役割があります。
+
+このプロンプトをもっとよくして</code></pre>
+            </div>
+            <p style="text-align: center; font-size: 1.5em; margin: 30px;">↓</p>
+            <div class="highlight-box">
+                <p>ChatGPTがより詳細で具体的なプロンプトを提案</p>
+            </div>
+        </div>
+
+        <!-- スライド13: ガイドライン作成プロンプト -->
+        <div class="slide">
+            <h1>改善されたガイドライン骨子作成プロンプト</h1>
             <div class="code-container">
                 <pre><code>あなたは**山梨県都留市の地方自治体職員**です。  
 役割は、添付されたガイドラインを正確に理解し、都留市の実情に即した「生成AI活用ガイドラインの骨子」を作成することです。  
@@ -763,6 +822,23 @@
    - **導入体制・運用プロセス（承認フロー、試行導入、評価方法）**  
    - **職員研修・市民への説明責任**  
    - **今後の発展可能性（市の特色を活かした利活用の方向性）**</code></pre>
+            </div>
+        </div>
+
+        <!-- スライド14: ガイドライン骨子出力結果 -->
+        <div class="slide">
+            <h1>ガイドライン骨子作成結果</h1>
+            <div class="image-container">
+                <img src="image-8.png" alt="ガイドライン骨子作成結果">
+            </div>
+            <div class="highlight-box">
+                <h3>生成された骨子の特徴</h3>
+                <ul>
+                    <li>都留市の地域特性を反映した内容</li>
+                    <li>具体的な活用分野と制約事項を明記</li>
+                    <li>段階的な導入プロセスを提案</li>
+                    <li>市長・部長レベルでの検討が可能な品質</li>
+                </ul>
             </div>
         </div>
 
