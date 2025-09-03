@@ -5,7 +5,9 @@
       "WebFetch(domain:www.city.tsuru.yamanashi.jp)",
       "WebSearch",
       "Bash(find:*)",
-      "WebFetch(domain:www.lib.city.tsuru.yamanashi.jp)"
+      "WebFetch(domain:www.lib.city.tsuru.yamanashi.jp)",
+      "Bash(git add:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
