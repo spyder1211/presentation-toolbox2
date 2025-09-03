@@ -207,6 +207,7 @@
             gap: 4px;
             transition: all 0.2s ease-in-out;
             box-shadow: var(--elevation-shadow);
+            z-index: 10;
         }
 
         .copy-button:hover {
@@ -615,7 +616,7 @@
 ###条件：
 ・化粧水の商品の魅力が伝わるような画像 
 ・明るい色がメイン 
-・縦：横＝2：1</code></pre>
+・縦：横＝1：2</code></pre>
             </div>
             <div class="image-container">
                 <img src="image.png" alt="生成された化粧水画像">
@@ -1139,10 +1140,27 @@ A: 児童手当について知りたいのですね。2024年10月改正後の�
 
         // コードブロックにコピーボタンを追加
         function addCopyButtons() {
-            const preElements = document.querySelectorAll('pre');
+            // すべてのcode-containerを取得
+            const codeContainers = document.querySelectorAll('.code-container');
             
+            codeContainers.forEach((container, index) => {
+                // すでにコピーボタンがある場合はスキップ
+                if (!container.querySelector('.copy-button')) {
+                    // コピーボタンを作成
+                    const copyButton = document.createElement('button');
+                    copyButton.className = 'copy-button';
+                    copyButton.innerHTML = '<i class="fas fa-copy"></i> コピー';
+                    copyButton.setAttribute('data-code-index', index);
+                    copyButton.setAttribute('title', 'クリップボードにコピー');
+                    
+                    // ボタンをコンテナに追加
+                    container.appendChild(copyButton);
+                }
+            });
+            
+            // code-containerで囲まれていないpreも処理
+            const preElements = document.querySelectorAll('pre');
             preElements.forEach((pre, index) => {
-                // すでにコンテナで囲まれていない場合のみ処理
                 if (!pre.parentNode.classList.contains('code-container')) {
                     // preをcode-containerで囲む
                     const container = document.createElement('div');
@@ -1154,7 +1172,8 @@ A: 児童手当について知りたいのですね。2024年10月改正後の�
                     const copyButton = document.createElement('button');
                     copyButton.className = 'copy-button';
                     copyButton.innerHTML = '<i class="fas fa-copy"></i> コピー';
-                    copyButton.setAttribute('data-code-index', index);
+                    copyButton.setAttribute('data-code-index', index + codeContainers.length);
+                    copyButton.setAttribute('title', 'クリップボードにコピー');
                     
                     // ボタンをコンテナに追加
                     container.appendChild(copyButton);
@@ -1217,9 +1236,20 @@ A: 児童手当について知りたいのですね。2024年10月改正後の�
             });
         }
 
-        // コピーボタンの初期化
-        addCopyButtons();
-        setupCopyButtons();
+        // ページ読み込み完了後にコピーボタンを初期化
+        window.addEventListener('DOMContentLoaded', () => {
+            addCopyButtons();
+            setupCopyButtons();
+        });
+        
+        // スライド切り替え時にもコピーボタンを追加
+        const originalShowSlide = window.showSlide;
+        window.showSlide = function(n) {
+            originalShowSlide(n);
+            setTimeout(() => {
+                addCopyButtons();
+            }, 100);
+        };
     </script>
 </body>
 </html>
