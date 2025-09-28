@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自治体職員向け生成AIワークショップ</title>
+    <title>生成AIワークショップ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -547,10 +547,10 @@
         
         <!-- スライド1: タイトル -->
         <div class="slide active title-slide">
-            <h1>自治体職員向け<br>生成AIワークショップ</h1>
+            <h1>生成AIワークショップ</h1>
             <div class="divider"></div>
-            <p class="subtitle">4つのデモンストレーションで学ぶ実践的AI活用</p>
-            <div class="date">2025年9月4日</div>
+            <p class="subtitle">3つのデモンストレーションで学ぶ実践的AI活用</p>
+            <div class="date">2025年9月29日</div>
             <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);">
                 <img src="c-table_logo.png" alt="C-Table Logo" style="height: 80px; opacity: 0.8;">
             </div>
@@ -561,140 +561,236 @@
             <h1>本日の生成AIデモンストレーション概要</h1>
             <div class="feature-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">🎨</div>
-                    <h3>画像生成</h3>
-                    <p>ChatGPTで商品宣伝画像を作成</p>
+                    <div class="feature-icon">📝</div>
+                    <h3>LP・チラシ作成</h3>
+                    <p>生成AIを活用したバイブコーディング</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">🔍</div>
                     <h3>DeepResearch</h3>
-                    <p>他自治体のAI活用事例を調査</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📝</div>
-                    <h3>資料作成</h3>
-                    <p>ガイドライン骨子の作成補助</p>
+                    <p>他の自治体の生成AI活用事例調査</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">💬</div>
-                    <h3>RAGチャットボット</h3>
-                    <p>都留市専用AIアシスタント</p>
+                    <h3>定常業務のワークフロー化</h3>
+                    <p>difyを使った返信文案の作成例</p>
                 </div>
             </div>
         </div>
 
         <!-- スライド3: デモ1タイトル -->
         <div class="slide">
-            <h1>デモ1: 画像生成を使った商品宣伝用画像作成</h1>
+            <h1>デモ1: ClaudeでLP・チラシ作成</h1>
             <div class="summary-box">
                 <h2>🎯 目的</h2>
-                <p style="font-size: 1.5em; font-weight: bold;">ChatGPTで化粧水の宣伝用画像を作成する</p>
+                <p style="font-size: 1.5em; font-weight: bold;">バイブコーディングによる高速Web制作</p>
             </div>
             <div class="highlight-box">
                 <h3>このデモで学べること</h3>
                 <ul>
-                    <li>AI画像生成の基本的な使い方</li>
-                    <li>効果的なプロンプトの書き方</li>
-                    <li>画像内テキストの編集方法</li>
+                    <li>プロンプトからHTMLコードの自動生成</li>
+                    <li>リアルタイムでの修正・改善</li>
+                    <li>デザインの即座の反映</li>
+                    <li>制作時間の大幅短縮</li>
                 </ul>
             </div>
         </div>
 
-        <!-- スライド4: キャッチコピー作成 -->
+        <!-- スライド4: 従来の制作方法との比較 -->
         <div class="slide">
-            <h1>ステップ1: キャッチコピーの生成</h1>
-            <div class="demo-content">
-                <h3>ChatGPTへの指示</h3>
-                <p>「化粧水のCMに使われそうなキャッチコピー案を５つあげてください」</p>
-            </div>
-            <div class="image-container">
-                <img src="Google Chrome 2025-09-02 15.04.55.png" alt="キャッチコピー生成結果">
-            </div>
-        </div>
-
-        <!-- スライド5: 画像生成プロンプト -->
-        <div class="slide">
-            <h1>ステップ2: 化粧水画像の生成</h1>
-            <div class="code-container">
-                <pre><code>あなたはプロのイラストレーターです。 
-以下の条件に従い、女性用化粧水を宣伝するチラシに掲載する画像を作成してください。 
-
-###条件：
-・化粧水の商品の魅力が伝わるような画像 
-・明るい色がメイン 
-・縦：横＝1：2</code></pre>
-            </div>
-            <div class="image-container">
-                <img src="image.png" alt="生成された化粧水画像">
-            </div>
-        </div>
-
-        <!-- スライド6: テキスト変更 -->
-        <div class="slide">
-            <h1>ステップ3: 画像内テキストの変更</h1>
-            <div class="code-container">
-                <pre><code>キャッチコピーを以下にしてください。 
-
-肌に、水のごちそうを。</code></pre>
-            </div>
+            <h1>従来のLP制作 vs Claude活用</h1>
             <div class="comparison">
-                <div class="comparison-item before">
-                    <h3>変更前</h3>
-                    <img src="image-2.png" alt="変更前の画像">
+                <div class="comparison-item before" style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); color: var(--text-color);">
+                    <h2 style="color: #c62828; margin-bottom: 20px;">従来の方法（約2-3日）</h2>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 15px 0;">🎨 デザイン案作成<br><span style="font-size: 1.2em; font-weight: bold;">4時間</span></li>
+                        <li style="margin: 15px 0;">💻 HTML/CSSコーディング<br><span style="font-size: 1.2em; font-weight: bold;">8時間</span></li>
+                        <li style="margin: 15px 0;">📝 コンテンツ作成・調整<br><span style="font-size: 1.2em; font-weight: bold;">4時間</span></li>
+                        <li style="margin: 15px 0;">🔧 修正・調整<br><span style="font-size: 1.2em; font-weight: bold;">4時間</span></li>
+                        <li style="margin: 15px 0;">👥 外注の場合<br><span style="font-size: 1.2em; font-weight: bold; color: #c62828;">10-30万円</span></li>
+                    </ul>
                 </div>
-                <div class="comparison-item after">
-                    <h3>変更後</h3>
-                    <img src="image-1.png" alt="変更後の画像">
+                <div class="comparison-item after" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); color: var(--text-color);">
+                    <h2 style="color: #2e7d32; margin-bottom: 20px;">Claude活用（約30分）</h2>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 15px 0;">💭 要件をプロンプトで指定<br><span style="font-size: 1.2em; font-weight: bold;">5分</span></li>
+                        <li style="margin: 15px 0;">🤖 Claudeがコード生成<br><span style="font-size: 1.2em; font-weight: bold;">1分</span></li>
+                        <li style="margin: 15px 0;">✏️ 対話形式で修正<br><span style="font-size: 1.2em; font-weight: bold;">20分</span></li>
+                        <li style="margin: 15px 0;">✅ 完成・公開<br><span style="font-size: 1.2em; font-weight: bold;">4分</span></li>
+                        <li style="margin: 15px 0;">💰 コスト<br><span style="font-size: 1.2em; font-weight: bold; color: #2e7d32;">Claude利用料のみ</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- スライド7: ImageFXの紹介 -->
+        <!-- スライド5: 実際のプロンプト例 -->
         <div class="slide">
-            <h1>参考　ImageFX: Google AIの画像生成ツール</h1>
+            <h1>効果的なプロンプトの書き方</h1>
+            <div class="card">
+                <h2>初期プロンプト例</h2>
+                <div class="code-container">
+                    <pre><code>都留市の観光PRページを作成してください。
+以下の要素を含めてください：
+
+- ヘッダー：市のロゴとナビゲーション
+- ヒーローセクション：富士山の見える街並み
+- 観光スポット紹介（3-4箇所）
+- アクセス情報
+- お問い合わせフォーム
+- レスポンシブ対応
+- モダンで親しみやすいデザイン</code></pre>
+                </div>
+            </div>
             <div class="highlight-box">
-                <h3>ImageFXの特徴</h3>
+                <h3>ポイント</h3>
                 <ul>
-                    <li>Google AIが提供する高品質な画像生成サービス</li>
-                    <li>詳細なプロンプトによる精密な画像生成</li>
-                    <li>商用利用可能な画像を無料で生成</li>
-                    <li>ファッション、ポートレート、風景など多様なスタイルに対応</li>
+                    <li>✅ 具体的な要素を明確に指定</li>
+                    <li>✅ デザインの方向性を伝える</li>
+                    <li>✅ 技術要件（レスポンシブ等）を含める</li>
                 </ul>
             </div>
-            <h2>ChatGPTでImageFX用のプロンプトを作成</h2>
-            <div class="code-container">
-                <pre><code>高画質で、女性イラストの雑誌表紙のようなイメージの画像
-
-このプロンプトをimagefx 用のプロンプトに拡張して</code></pre>
-            </div>
-            <div class="code-container">
-                <pre><code>High-resolution illustration of a beautiful young woman, styled like a glossy fashion magazine cover. 
-Elegant pose, stylish modern outfit, professional makeup, smooth glowing skin. 
-Bright and vivid yet natural colors, soft lighting, detailed background, cinematic composition. 
-Magazine cover aesthetic, artistic and polished illustration.</code></pre>
-            </div>
         </div>
 
-        <!-- スライド8: ImageFX出力画像 -->
+        <!-- スライド6: バイブコーディングの流れ -->
         <div class="slide">
-            <h1>参考　ImageFXによる生成結果</h1>
-            <div class="image-container" style="text-align: center; margin: 40px auto;">
-                <img src="Image_fx.jpg" alt="ImageFXで生成されたファッション雑誌風画像" style="max-width: 80%; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+            <h1>バイブコーディング実演の流れ</h1>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0;">
+                <div class="card">
+                    <h3><span class="step-number">1</span>基本構造の生成（2分）</h3>
+                    <ul>
+                        <li>Claudeに初期プロンプトを投げる</li>
+                        <li>基本的なHTML構造が即座に生成</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><span class="step-number">2</span>デザイン調整（5分）</h3>
+                    <ul>
+                        <li>「配色を市のブランドカラーに変更」</li>
+                        <li>「フォントサイズを大きく」</li>
+                        <li>リアルタイムで変更を確認</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><span class="step-number">3</span>コンテンツ追加（5分）</h3>
+                    <ul>
+                        <li>実際の観光情報を追加</li>
+                        <li>画像の配置調整</li>
+                        <li>テキストの修正</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><span class="step-number">4</span>機能追加（3分）</h3>
+                    <ul>
+                        <li>アニメーション効果</li>
+                        <li>お問い合わせフォーム</li>
+                        <li>SNSリンク追加</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <!-- スライド9: Google Veoで動画生成 -->
+        <!-- スライド7: 生成されたコードの例 -->
         <div class="slide">
-            <h1>参考　Google Veoで動画生成</h1>
-            <div style="text-align: center; margin: 40px auto;">
-                <video controls style="max-width: 80%; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
-                    <source src="movie.mp4" type="video/mp4">
-                    お使いのブラウザは動画タグをサポートしていません。
-                </video>
+            <h1>実際に生成されたコード</h1>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">✨</div>
+                    <h3>完全なHTML/CSS/JS</h3>
+                    <p>プロ品質のコード生成</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <h3>レスポンシブ対応</h3>
+                    <p>全デバイスで最適表示</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <h3>モダンデザイン</h3>
+                    <p>最新のデザイントレンド</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">♿</div>
+                    <h3>アクセシビリティ</h3>
+                    <p>誰でも使いやすい設計</p>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <p style="text-align: center; font-size: 1.2em;">🚀 生成されたコードは即座にブラウザで確認可能</p>
             </div>
         </div>
 
-        <!-- スライド10: デモ2タイトル -->
+        <!-- スライド8: 修正・カスタマイズ例 -->
+        <div class="slide">
+            <h1>対話的な修正プロセス</h1>
+            <div class="card">
+                <h3>修正依頼の例</h3>
+                <div style="margin: 20px 0;">
+                    <div style="background: #f0f4f8; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <p><strong>👤 ユーザー：</strong></p>
+                        <p style="font-style: italic;">「ヘッダーの背景を半透明にして、スクロール時に固定してください」</p>
+                    </div>
+                    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <p><strong>🤖 Claude：</strong></p>
+                        <p>承知しました。以下の変更を加えます：</p>
+                        <ul>
+                            <li>ヘッダーに position: fixed を追加</li>
+                            <li>背景に rgba() で半透明効果</li>
+                            <li>スクロール時の影を追加</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <h3>メリット</h3>
+                <ul>
+                    <li>専門知識不要で細かい調整が可能</li>
+                    <li>試行錯誤が容易</li>
+                    <li>即座に結果を確認</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド9: 活用効果とまとめ -->
+        <div class="slide">
+            <h1>バイブコーディングの効果</h1>
+            <div class="summary-box">
+                <h2>🎯 実現できること</h2>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0;">
+                    <div style="text-align: center;">
+                        <p style="font-size: 1.2em;"><strong>制作時間</strong></p>
+                        <p style="font-size: 1.5em; color: white;">2-3日 → 30分</p>
+                        <p style="font-size: 1em;">約95%削減</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-size: 1.2em;"><strong>コスト</strong></p>
+                        <p style="font-size: 1.5em; color: white;">10-30万円 → ほぼ0円</p>
+                        <p style="font-size: 1em;">99%以上削減</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-size: 1.2em;"><strong>必要スキル</strong></p>
+                        <p style="font-size: 1.5em; color: white;">HTML/CSS/JS → 日本語</p>
+                        <p style="font-size: 1em;">専門知識不要</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-size: 1.2em;"><strong>修正対応</strong></p>
+                        <p style="font-size: 1.5em; color: white;">数時間 → 数分</p>
+                        <p style="font-size: 1em;">即座に対応</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>📊 適用可能な業務</h3>
+                <ul>
+                    <li>イベント告知ページ</li>
+                    <li>観光PRサイト</li>
+                    <li>市民向けお知らせ</li>
+                    <li>アンケートフォーム</li>
+                    <li>施設予約ページ</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド11: デモ2タイトル -->
         <div class="slide">
             <h1>デモ2: DeepResearchで情報検索</h1>
             <div class="summary-box">
@@ -712,7 +808,7 @@ Magazine cover aesthetic, artistic and polished illustration.</code></pre>
             </div>
         </div>
 
-        <!-- スライド11: 従来の調査方法 -->
+        <!-- スライド12: 従来の調査方法 -->
         <div class="slide">
             <h1>従来の調査方法の課題</h1>
             <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin: 30px 0;">
@@ -885,271 +981,6 @@ Magazine cover aesthetic, artistic and polished illustration.</code></pre>
             <a href="chatgpt.pdf" target="_blank" class="url-link">
                 詳細レポート: chatgpt.pdf
             </a>
-        </div>
-
-        <!-- スライド17: デモ3タイトル -->
-        <div class="slide">
-            <h1>デモ3: 生成AIで資料作成</h1>
-            <h2>都留市向けAI活用ガイドライン骨子の作成</h2>
-            <div class="highlight-box">
-                <h3>参考資料</h3>
-                <p>デジタル庁「行政の進化と革新のための生成AIの調達・利活用に係るガイドライン」</p>
-                <a href="https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/80419aea/20250527_resources_standard_guidelines_guideline_01.pdf" target="_blank" class="url-link">
-                    ガイドラインPDF
-                </a>
-            </div>
-        </div>
-
-        <!-- スライド18: 初期プロンプト -->
-        <div class="slide">
-            <h1>初期プロンプト</h1>
-            <div class="card warning">
-                <h3>最初のシンプルな指示</h3>
-                <pre><code>あなたは山梨県都留市の地方自治体職員です。
-添付したガイドラインの内容を理解し、都留市におけるガイドラインの骨子を作成する役割があります。
-
-このプロンプトをもっとよくして</code></pre>
-            </div>
-            <p style="text-align: center; font-size: 1.5em; margin: 30px;">↓</p>
-            <div class="highlight-box">
-                <p>ChatGPTがより詳細で具体的なプロンプトを提案</p>
-            </div>
-        </div>
-
-        <!-- スライド19: ガイドライン作成プロンプト -->
-        <div class="slide">
-            <h1>改善されたガイドライン骨子作成プロンプト</h1>
-            <div class="code-container">
-                <pre><code>あなたは**山梨県都留市の地方自治体職員**です。  
-役割は、添付されたガイドラインを正確に理解し、都留市の実情に即した「生成AI活用ガイドラインの骨子」を作成することです。  
-
-### 指示内容
-1. 添付されたガイドラインの要点を抽出し、都留市に適用可能な部分と修正が必要な部分を整理してください。  
-2. 都留市の課題や政策文脈（人口減少、少子高齢化、行政効率化、観光振興など）を踏まえ、骨子案を再構築してください。  
-3. 骨子は以下の要素を含めてください：  
-   - **基本理念・目的**  
-   - **適用範囲（対象となる業務分野や職員）**  
-   - **活用分野（例：文書作成、窓口対応、議事録要約、教育、観光PRなど）**  
-   - **利用ルール・留意事項（個人情報保護、セキュリティ、誤用リスク）**  
-   - **導入体制・運用プロセス（承認フロー、試行導入、評価方法）**  
-   - **職員研修・市民への説明責任**  
-   - **今後の発展可能性（市の特色を活かした利活用の方向性）**</code></pre>
-            </div>
-        </div>
-
-        <!-- スライド20: ガイドライン骨子出力結果 -->
-        <div class="slide">
-            <h1>ガイドライン骨子作成結果</h1>
-            <div class="image-container">
-                <img src="image-8.png" alt="ガイドライン骨子作成結果">
-            </div>
-            <div class="highlight-box">
-                <h3>生成された骨子の特徴</h3>
-                <ul>
-                    <li>都留市の地域特性を反映した内容</li>
-                    <li>具体的な活用分野と制約事項を明記</li>
-                    <li>段階的な導入プロセスを提案</li>
-                    <li>市長・部長レベルでの検討が可能な品質</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- スライド21: Canvasの活用 -->
-        <div class="slide">
-            <h1>Canvasを使った文書編集</h1>
-            <h2>インタラクティブな文書作成・編集機能</h2>
-            <div class="demo-content">
-                <h3>デモ例: 恋愛小説の作成と編集</h3>
-                <pre><code>男女の恋愛小説を100文字程度で書いてください。</code></pre>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">✏️</div>
-                    <h3>修正提案</h3>
-                    <p>AIが文章の改善点を提案</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📏</div>
-                    <h3>文章の長さ調節</h3>
-                    <p>要約や詳細化が簡単</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📖</div>
-                    <h3>読解レベル調整</h3>
-                    <p>対象者に合わせた文体変更</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- スライド22: Canvasの使い方 -->
-        <div class="slide">
-            <h1>Canvasの使い方</h1>
-            <div style="margin: 20px 0;">
-                <div class="image-container" style="text-align: center;">
-                    <img src="canvas-1.png" alt="Canvas機能の画面" style="max-width: 90%; height: auto; border: 2px solid #DFE1E6; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                </div>
-                <div class="highlight-box" style="margin-top: 30px;">
-                    <h3>Canvasの主な機能</h3>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px;">
-                        <div style="padding: 10px; background: white; border-radius: 6px;">
-                            <strong>📝 文書作成・編集</strong>
-                            <p style="margin: 5px 0; font-size: 0.9em;">AIと共同で文書を作成・推敲</p>
-                        </div>
-                        <div style="padding: 10px; background: white; border-radius: 6px;">
-                            <strong>✨ インライン編集</strong>
-                            <p style="margin: 5px 0; font-size: 0.9em;">特定箇所の修正提案を即座に反映</p>
-                        </div>
-                        <div style="padding: 10px; background: white; border-radius: 6px;">
-                            <strong>📊 形式変換</strong>
-                            <p style="margin: 5px 0; font-size: 0.9em;">表やリストなど形式を自在に変更</p>
-                        </div>
-                        <div style="padding: 10px; background: white; border-radius: 6px;">
-                            <strong>🎯 リアルタイム協働</strong>
-                            <p style="margin: 5px 0; font-size: 0.9em;">AIと対話しながら文書を完成</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- スライド23: Canvasモードへの移行 -->
-        <div class="slide">
-            <h1>Canvasモードへの移行方法</h1>
-            <div class="comparison">
-                <div style="flex: 1; padding: 20px;">
-                    <h2>STEP 1: 通常のチャットで作成</h2>
-                    <div class="image-container" style="margin: 20px 0;">
-                        <img src="canvas-step1.png" alt="通常チャットで恋愛小説を作成" style="width: 100%; border: 2px solid #DFE1E6; border-radius: 8px;">
-                    </div>
-                    <div class="highlight-box" style="margin-top: 15px;">
-                        <p><strong>プロンプト例：</strong></p>
-                        <p style="font-style: italic; color: #666;">「男女の恋愛小説を100文字程度で書いてください。」</p>
-                    </div>
-                </div>
-                <div style="flex: 1; padding: 20px;">
-                    <h2>STEP 2: Canvasモードで編集</h2>
-                    <div class="image-container" style="margin: 20px 0;">
-                        <img src="canvas-step2.png" alt="Canvasモードでの編集画面" style="width: 100%; border: 2px solid #DFE1E6; border-radius: 8px;">
-                    </div>
-                    <div class="highlight-box" style="margin-top: 15px;">
-                        <p><strong>Canvas機能：</strong></p>
-                        <ul style="margin: 5px 0; padding-left: 20px;">
-                            <li>AIが生成した文章を直接編集</li>
-                            <li>コピー、編集、ダウンロードが可能</li>
-                            <li>リアルタイムでAIと協働作業</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- スライド24: デモ4タイトル -->
-        <div class="slide">
-            <h1>デモ4: RAGチャットボット</h1>
-            <h2>都留市専用知識ベースを活用したAIアシスタント</h2>
-            <div class="comparison">
-                <div class="comparison-item before">
-                    <h3>従来のAIの課題</h3>
-                    <ul>
-                        <li>学習データの時点で知識が固定</li>
-                        <li>最新情報に対応できない</li>
-                        <li>組織固有の情報を知らない</li>
-                        <li>誤った情報を生成する可能性</li>
-                    </ul>
-                </div>
-                <div class="comparison-item after">
-                    <h3>RAGによる解決</h3>
-                    <ul>
-                        <li>最新の市政情報を参照</li>
-                        <li>都留市固有のデータを活用</li>
-                        <li>根拠を明示した回答</li>
-                        <li>24時間365日対応可能</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- スライド25: RAGの仕組み -->
-        <div class="slide">
-            <h1>RAGの仕組み</h1>
-            <div class="image-container">
-                <img src="image-6.png" alt="RAG概念図1">
-                <p style="font-size: 2em; margin: 20px;">↓</p>
-                <img src="image-7.png" alt="RAG概念図2">
-            </div>
-            <div class="code-container">
-                <pre><code>【RAGの仕組み】
-1. 質問を受ける
-2. 関連文書を検索（ベクトル検索）
-3. 検索結果を参照しながら回答生成
-→ 最新かつ正確な情報に基づく回答が可能</code></pre>
-            </div>
-        </div>
-
-        <!-- スライド26: チャットボットデモ -->
-        <div class="slide">
-            <h1>都留市チャットボット実演</h1>
-            <div class="highlight-box">
-                <h3>デモURL</h3>
-                <a href="https://lately-large-garfish.ngrok-free.app/chat/94OethPUJ5Pgu1rO" target="_blank" class="url-link">
-                    https://lately-large-garfish.ngrok-free.app/chat/94OethPUJ5Pgu1rO
-                </a>
-            </div>
-            <div class="demo-content">
-                <h3>質問例1: 図書館の開館時間</h3>
-                <pre><code>Q: 都留市の図書館の開館時間を教えてください
-
-A: 都留市立図書館の開館時間は、火曜〜金曜が10:00〜19:00、
-   土曜日祝が10:00〜17:00です。休館日は月曜日と年末年始となります。</code></pre>
-            </div>
-        </div>
-
-        <!-- スライド27: 児童手当の問い合わせ -->
-        <div class="slide">
-            <h1>複雑な問い合わせへの対応</h1>
-            <div class="demo-content">
-                <h3>質問例2: 児童手当について</h3>
-                <pre><code>Q: 子供手当について教えてください
-
-A: 児童手当について知りたいのですね。2024年10月改正後の主な内容は次のとおりです。
-
-- 支給額
-  - 0歳〜3歳未満: 月額 15,000円
-  - 3歳〜小学校修了前: 月額 10,000円
-    - 第3子以降は月額 30,000円
-  - 中学生: 月額 10,000円
-  - 高校生年代（15歳年度末〜18歳年度末）: 月額 10,000円
-    - 第3子以降は月額 30,000円
-
-- 支給時期
-  - 偶数月に支給（2月・4月・6月・8月・10月・12月）
-
-- 申請期限
-  - 令和7年3月31日まで（高校生年代の新規申請を含む）</code></pre>
-            </div>
-        </div>
-
-        <!-- スライド28: 導入効果 -->
-        <div class="slide">
-            <h1>RAG導入による効果</h1>
-            <div class="feature-grid">
-                <div class="card success">
-                    <h3>業務効率化</h3>
-                    <ul>
-                        <li>電話対応: 15分→1分（93%削減）</li>
-                        <li>年間5,000件で1,250時間削減</li>
-                        <li>職員2名分の業務時間創出</li>
-                    </ul>
-                </div>
-                <div class="card primary">
-                    <h3>市民サービス向上</h3>
-                    <ul>
-                        <li>24時間365日対応</li>
-                        <li>待ち時間ゼロ</li>
-                        <li>多言語対応も可能</li>
-                    </ul>
-                </div>
-            </div>
         </div>
 
         <!-- スライド29: まとめ -->
